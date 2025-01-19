@@ -9,7 +9,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL (Vite's default port)
+  origin: 'http://localhost:5173', // Your frontend URL 
   credentials: true,               // Allow credentials
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/visitor-app')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 

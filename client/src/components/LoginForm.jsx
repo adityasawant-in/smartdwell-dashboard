@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';  // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles for the toast
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -23,13 +25,22 @@ const LoginForm = () => {
     setError('');
     try {
       const response = await login(credentials.userId, credentials.password);
-      if (response.type === 'admin') {
-        navigate('/dashboard');
-      } else {
-        navigate('/visitor');
-      }
+
+      // Show success toast first
+      toast.success('User logged in successfully!');
+
+      // Wait for the toast to display, then navigate after 1 second
+      setTimeout(() => {
+        if (response.type === 'admin') {
+          navigate('/dashboard');
+        } else {
+          navigate('/visitor');
+        }
+      }, 1000);  // Adjust this timeout if needed
+
     } catch (error) {
-      setError('Invalid credentials');
+      setError('Something went wrong');
+      toast.error('Something went wrong. Please try again.');  // Error toast
       console.error('Login error:', error);
     }
   };
@@ -81,6 +92,9 @@ const LoginForm = () => {
           </form>
         </div>
       </div>
+
+      {/* ToastContainer to render toasts */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 };
