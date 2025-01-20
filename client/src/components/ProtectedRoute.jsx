@@ -5,7 +5,11 @@ const ProtectedRoute = ({ children, allowedRole }) => {
   const { isAuthenticated, userType, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (!isAuthenticated) {

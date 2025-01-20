@@ -3,6 +3,7 @@ import { Menu, X, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 // Import the logo
 import logo3 from '../assets/logo3.png'; // Adjust the path if `assets` is in a different folder
+import UserManagement from './UserManagement';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,8 +28,8 @@ const Navbar = () => {
                 className={`
           fixed lg:relative
           lg:flex flex-col
-          w-64 h-full
-          bg-purple-50
+          w-25 h-full
+          bg-red-50
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
           z-20
@@ -38,15 +39,19 @@ const Navbar = () => {
             >
                 {/* Logo section */}
                 <div className="p-4 border-b border-gray-200 flex items-center">
-                    <img src={logo3} alt="SmartDwell.Technologies" className="h-20 w-auto mr-2" />
-                    <h1 className="text-4xl font-bold text-gray-800">Gloria</h1>
+                    <img
+                        src={logo3}
+                        alt="Gloria"
+                        className="h-28 w-auto mr-2 rounded-full drop-shadow-[0_0_20px_rgba(255,165,0,0.8)] transition duration-300"
+                    />
+                    {/* <h1 className="text-4xl font-bold text-gray-800">Gloria</h1> */}
                 </div>
 
                 {/* Navigation Links */}
                 <nav className="flex flex-col">
-                    <NavItem icon="👤" label="User" link="/user" active />
-                    <NavItem icon="📊" label="Meter" link="/meter" />
-                    <NavItem icon="👥" label="Client View" link="/client-view" />
+                    <NavItem icon="👤" label="Create User" link="/user" active />
+                    <NavItem icon="👥" label="All Users" link="/client-view" />
+                    <NavItem icon="📊" label="Data" link="/meter" />
                 </nav>
 
                 {/* Mobile close button */}
@@ -71,7 +76,7 @@ const Navbar = () => {
 
                     <button
                         onClick={handleLogout}
-                        className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors ml-auto"
+                        className="flex items-center gap-2 bg-orange-500 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors ml-auto"
                     >
                         <LogOut size={20} />
                         <span>Logout</span>
@@ -80,7 +85,7 @@ const Navbar = () => {
 
                 {/* Main content */}
                 <main className="flex-1 bg-gray-50">
-                    {/* Your page content goes here */}
+                    <UserManagement/>
                 </main>
             </div>
 
