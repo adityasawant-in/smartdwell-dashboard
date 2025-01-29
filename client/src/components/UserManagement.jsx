@@ -70,8 +70,8 @@ const UserManagement = () => {
       setShowModal(false);
       setFormData(initialFormState);
     } catch (error) {
-      console.error('Registration error:', error);
-      alert('Error registering user');
+      // console.error('Registration error:', error);
+      // alert('Error registering user');
     }
   };
 
