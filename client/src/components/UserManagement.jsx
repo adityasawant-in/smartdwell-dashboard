@@ -137,14 +137,14 @@ const UserManagement = () => {
           <table className="min-w-full bg-white">
             <thead className="bg-gray-100">
               <tr>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Name</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Login Id</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Client Mail</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Mobile</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Age</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Gender</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Role Type</th>
-                <th className="px-3 sm:px-6 py-3 text-left text-xs sm:text-sm font-medium text-gray-700">Action</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Name</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Login Id</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Client Mail</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Mobile</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Age</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Gender</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Role Type</th>
+              <th className="px-3 sm:px-6 py-3 text-left text-lg sm:text-xl font-medium text-gray-700">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
