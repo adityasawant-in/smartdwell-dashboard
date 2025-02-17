@@ -34,7 +34,7 @@ const LoginForm = () => {
         if (response.type === 'admin') {
           navigate('/dashboard');
         } else {
-          navigate('/visitor');
+          navigate('/Readwater');
         }
       }, 1000);  // Adjust this timeout if needed
 

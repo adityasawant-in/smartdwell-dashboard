@@ -5,7 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Dashboard from './pages/Dashboard';
-import Visitor from './pages/Visitor';
+import Readwater from './pages/Readwater';
 
 function App() {
   return (
@@ -20,13 +20,13 @@ function App() {
               <ProtectedRoute allowedRole="admin">
                 <Dashboard />
               </ProtectedRoute>
-            } 
+            } s
           />
           <Route 
-            path="/visitor" 
+            path="/Readwater" 
             element={
               <ProtectedRoute allowedRole="user">
-                <Visitor />
+                <Readwater/>
               </ProtectedRoute>
             } 
           />
