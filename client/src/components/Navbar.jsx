@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import logo3 from "../assets/logo3.png";
 import UserManagement from "./UserManagement";
 import Graphs from "./Graphs";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  // Don't forget to import CSS
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +22,25 @@ const Navbar = () => {
     }, [selectedView]);
 
     const handleLogout = () => {
-        localStorage.removeItem("authToken");
-        sessionStorage.removeItem("authToken");
-        localStorage.removeItem("userInfo");
-        sessionStorage.removeItem("userInfo");
-        localStorage.removeItem("selectedView"); // Clear selected view on logout
-        navigate("/login");
+        // Show a toast message with a 2-second delay
+       toast.info("Logging out...", {
+             position: "top-right",
+             autoClose: 2000,  // Toast will disappear after 2 seconds
+             hideProgressBar: true,
+             closeOnClick: true,
+             pauseOnHover: true,
+           });
+
+        // Perform the logout after the toast delay (2 seconds)
+        setTimeout(() => {
+            // Clear all the local storage and session storage
+            localStorage.removeItem("authToken");
+            sessionStorage.removeItem("authToken");
+            localStorage.removeItem("userInfo");
+            sessionStorage.removeItem("userInfo");
+            localStorage.removeItem("selectedView"); // Clear selected view on logout
+            navigate("/login"); // Navigate to login page after logout
+        }, 2500);  // Ensure logout action occurs after the toast duration
     };
 
     const toggleMenu = () => {
@@ -37,8 +52,7 @@ const Navbar = () => {
             {/* Sidebar */}
             <aside
                 className={`fixed lg:static w-45 h-full bg-red-50 transition-transform duration-300 ease-in-out
-                    ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}
-                    z-30 border-r border-gray-200`}
+                    ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
             >
                 {/* Logo section */}
                 <div className="border-b border-gray-200 flex items-center justify-center">
@@ -113,6 +127,9 @@ const Navbar = () => {
                     onClick={toggleMenu}
                 />
             )}
+
+            {/* Toast Container */}
+            <ToastContainer />
         </div>
     );
 };

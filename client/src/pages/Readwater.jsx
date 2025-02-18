@@ -3,6 +3,9 @@ import LiquidFillGauge from 'react-liquid-gauge';
 import { color } from 'd3-color';
 import { interpolateRgb } from 'd3-interpolate';
 import MotorControl from '../components/MotorControl';
+import Logout from '../components/Logout';  // Import the Logout component
+import { ToastContainer } from 'react-toastify';  // Import ToastContainer for toasts
+import 'react-toastify/dist/ReactToastify.css';  // Import toast styles
 
 const GaugeWrapper = (props) => {
   const originalConsoleError = console.error;
@@ -75,7 +78,7 @@ const ReadWater = () => {
   const startColor = '#00bfff';
   const endColor = '#1e90ff';
   const radius = 200;
-  const radiusSmall = 150;
+  const radiusSmall = 140;
   const currentRadius = windowWidth < 768 ? radiusSmall : radius;
 
   const interpolate = interpolateRgb(startColor, endColor);
@@ -127,6 +130,10 @@ const ReadWater = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-4 md:p-8 space-y-8 md:space-y-0 md:space-x-24">
       {/* Gauge */}
+      {/* Logout Button */}
+      <div className="absolute top-4 right-4">
+        <Logout /> {/* Use the Logout component here */}
+      </div>
       <div className="w-full md:w-auto flex justify-center">
         <GaugeWrapper
           width={currentRadius * 2}
@@ -166,13 +173,12 @@ const ReadWater = () => {
       </div>
 
       {/* Data Display */}
-      {/* Data Display */}
       <div className="text-center w-full md:w-auto">
         {waterData && (
           <div className="space-y-4">
-            <div className="text-6xl text-gray-700">{Math.round(value)}%</div> {/* Increased font size */}
-            <div className="text-2xl text-gray-600">{waterData.cms}</div> {/* Increased font size */}
-            <div className="text-2xl text-gray-600">{waterData.kl}</div> {/* Increased font size */}
+            <div className="text-6xl text-gray-700">{Math.round(value)}%</div>
+            <div className="text-2xl text-gray-600">{waterData.cms}</div>
+            <div className="text-2xl text-gray-600">{waterData.kl}</div>
           </div>
         )}
 
@@ -183,6 +189,8 @@ const ReadWater = () => {
       </div>
       <MotorControl/>
 
+      {/* Toast Container */}
+      <ToastContainer />
     </div>
   );
 };
