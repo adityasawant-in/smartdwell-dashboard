@@ -3,44 +3,39 @@ import { Menu, X, LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import logo3 from "../assets/logo3.png";
 import UserManagement from "./UserManagement";
-import Graphs from "./Graphs";
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';  // Don't forget to import CSS
+import 'react-toastify/dist/ReactToastify.css';
+import ProfileCards from "./ProfileCards";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
-    // Load the last selected view from localStorage (default to 'userManagement')
     const [selectedView, setSelectedView] = useState(() => {
         return localStorage.getItem("selectedView") || "userManagement";
     });
 
     useEffect(() => {
-        // Save the selected view in localStorage whenever it changes
         localStorage.setItem("selectedView", selectedView);
     }, [selectedView]);
 
     const handleLogout = () => {
-        // Show a toast message with a 2-second delay
-       toast.info("Logging out...", {
-             position: "top-right",
-             autoClose: 2000,  // Toast will disappear after 2 seconds
-             hideProgressBar: true,
-             closeOnClick: true,
-             pauseOnHover: true,
-           });
+        toast.info("Logging out...", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+        });
 
-        // Perform the logout after the toast delay (2 seconds)
         setTimeout(() => {
-            // Clear all the local storage and session storage
             localStorage.removeItem("authToken");
             sessionStorage.removeItem("authToken");
             localStorage.removeItem("userInfo");
             sessionStorage.removeItem("userInfo");
-            localStorage.removeItem("selectedView"); // Clear selected view on logout
-            navigate("/login"); // Navigate to login page after logout
-        }, 2500);  // Ensure logout action occurs after the toast duration
+            localStorage.removeItem("selectedView");
+            navigate("/login");
+        }, 2500);
     };
 
     const toggleMenu = () => {
@@ -51,7 +46,7 @@ const Navbar = () => {
         <div className="flex h-screen w-screen overflow-hidden absolute top-0 left-0 right-0 bottom-0 bg-white">
             {/* Sidebar */}
             <aside
-                className={`fixed lg:static w-45 h-full bg-red-50 transition-transform duration-300 ease-in-out
+                className={`fixed lg:static w-45 h-full bg-orange-100 transition-transform duration-300 ease-in-out z-50
                     ${isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
             >
                 {/* Logo section */}
@@ -68,19 +63,19 @@ const Navbar = () => {
                     <NavItem 
                         icon="👤" 
                         label="Create User" 
-                        onClick={() => setSelectedView("userManagement")} 
+                        onClick={() => { setSelectedView("userManagement"); setIsOpen(false); }} 
                         active={selectedView === "userManagement"} 
                     />
                     <NavItem 
-                        icon="👥" 
-                        label="All Users" 
-                        onClick={() => setSelectedView("graphs")} 
-                        active={selectedView === "graphs"} 
+                        icon="📝" 
+                        label="Profile Cards" 
+                        onClick={() => { setSelectedView("Profile_Cards"); setIsOpen(false); }} 
+                        active={selectedView === "Profile_Cards"} 
                     />
                     <NavItem 
-                        icon="📊" 
+                        icon="👥" 
                         label="Data" 
-                        onClick={() => setSelectedView("userManagement")} 
+                        onClick={() => { setSelectedView("userManagement"); setIsOpen(false); }} 
                         active={selectedView === "userManagement"} 
                     />
                 </nav>
@@ -97,7 +92,7 @@ const Navbar = () => {
             {/* Main content wrapper */}
             <div className="flex-1 flex flex-col w-full overflow-hidden">
                 {/* Top header bar */}
-                <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sticky top-0 z-20">
+                <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 sticky top-0 z-40">
                     <button
                         className="lg:hidden text-gray-600 hover:text-gray-800"
                         onClick={toggleMenu}
@@ -115,15 +110,15 @@ const Navbar = () => {
                 </header>
 
                 {/* Main scrollable content area */}
-                <main className="flex-1 overflow-auto bg-gray-50">
-                    {selectedView === "graphs" ? <Graphs /> : <UserManagement />}
+                <main className="flex-1 overflow-auto bg-gray-50 relative z-0">
+                    {selectedView === "Profile_Cards" ? <ProfileCards/> : <UserManagement />}
                 </main>
             </div>
 
             {/* Mobile overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
                     onClick={toggleMenu}
                 />
             )}

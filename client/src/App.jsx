@@ -6,6 +6,8 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Dashboard from './pages/Dashboard';
 import Readwater from './pages/Readwater';
+import Complaints from './pages/Complaints';
+import Patrolling from './pages/Patrolling';
 
 function App() {
   return (
@@ -14,21 +16,37 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute allowedRole="admin">
                 <Dashboard />
               </ProtectedRoute>
-            } s
+            }
           />
-          <Route 
-            path="/Readwater" 
+          <Route
+            path="/Readwater"
             element={
               <ProtectedRoute allowedRole="user">
                 <Readwater/>
               </ProtectedRoute>
-            } 
+            }
+          />
+          <Route
+            path="/Complaints"
+            element={
+              <ProtectedRoute allowedRole="user">
+                <Complaints/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/Patrolling"
+            element={
+              <ProtectedRoute allowedRole="user">
+                <Patrolling/>
+              </ProtectedRoute>
+            }
           />
           <Route path="/" element={<LoginForm />} />
         </Routes>
