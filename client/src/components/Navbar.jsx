@@ -67,7 +67,7 @@ const Navbar = () => {
                         active={selectedView === "userManagement"} 
                     />
                     <NavItem 
-                        icon="📝" 
+                        icon="🧑‍💻🔧" 
                         label="Profile Cards" 
                         onClick={() => { setSelectedView("Profile_Cards"); setIsOpen(false); }} 
                         active={selectedView === "Profile_Cards"} 
